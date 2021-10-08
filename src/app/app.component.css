@@ -3,10 +3,6 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
-.width {
-    margin-left: 40px;
-    margin-right: 40px;
-}
 .header-fntsz {
     font-size: 25px;
 }
@@ -14,40 +10,110 @@
     color: rgb(1, 57, 177);
 }
 .box-border {
-   margin-bottom: 50px;
-   margin-right: 34px;
-   padding-left: 5px;
-   padding-right: 5px;
-   padding-top: 5px;
-   padding-bottom: 5px;
-   box-shadow: rgb(193, 194, 193) 1px 5px 10px 5px;
+   margin-bottom: 60px;
+   margin-right: 34px;   
 }
 .img-width {
-    width: 250px;
+    
     height: 320px;
+}
+.avlColors {
+    box-shadow: lightgray 1px 5px 40px 5px;
+    padding-left: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+   
 }
 .font-size {
     font-size: 13px;
     font-weight: 500;
-    width: 250px;
-  
+    width: 240px;
+    height: 120;
+}
+.fixed-width {
+    width: 240px;
+    height: 110px;
+    padding-top: 20px;
 }
 .sort-brdnon {
     border: none;
 }
 .sort-mrgn {
-    margin-left: 83%;
+    margin-left: 82%;
     margin-bottom:30px ;
 }
 .buton {
     margin-left: 90px;
 }
 .sort-border {
-    box-shadow: lightgray 1px 5px 10px 5px;
-    margin-left: 82%;
+    margin-left: 81%;
 }
 .list-padding {
     padding-right: 40px;
     padding-left: 10px;
     padding-top: 10px;
+}
+.smallImgWdth {
+    height: 15px;
+    width: 15px;
+    border: lightgray solid 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-right: 3px;
+}
+.sortbrdr {
+    border: none;
+}
+.inline {
+    display: inline-flex;
+}
+a {
+    color: black;
+}
+.filterbrdr {
+    border-bottom: 1px solid lightgray;
+}
+.filterMrgn {
+    margin-left: 40px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.gap {
+    margin-left: 26px;
+}
+.iconspc1 {
+    margin-left: 200px;
+}
+.iconspc2 {
+    margin-left: 185px;
+}
+.iconspc3 {
+    margin-left: 178px;
+}
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('https://thumbs.gfycat.com/GleefulScarceBushsqueaker-max-1mb.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading .modal {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
 }
