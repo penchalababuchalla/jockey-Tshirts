@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private authService: AuthService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
-        const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJmNDc2MDRhMS1lOGMzLTQ3ZWYtOTY2Yi0wNWJkODU0ZDU3MWYiLCJhaWQiOiJDQUQ1MDU5MC1BMTg5LTQxNEYtQTJGNS0xMDMzOUQxRjlGOTciLCJkaWQiOiI0NDQ5NkIwMy0zNjQ3LTQ5MEMtQjJGMC0yRTE1OUIyN0QyNzgiLCJuYmYiOjE2MzM2NjYzMjgsImV4cCI6MTYzMzc1MjcyOCwiaWF0IjoxNjMzNjY2MzI4fQ.pl54oHl242zTpdKW0DqUh07BX9yhN6W9wg5iK1Z08-o';
+        const authToken = ' eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJhZTk5YmIyZC1lMjZiLTQ5MTgtYTY2Mi03YzczZjcxMDRmY2YiLCJhaWQiOiJDQUQ1MDU5MC1BMTg5LTQxNEYtQTJGNS0xMDMzOUQxRjlGOTciLCJkaWQiOiI0NDQ5NkIwMy0zNjQ3LTQ5MEMtQjJGMC0yRTE1OUIyN0QyNzgiLCJuYmYiOjE2MzM4NDI5ODAsImV4cCI6MTYzMzkyOTM4MCwiaWF0IjoxNjMzODQyOTgwfQ.oUtayWOOXJQlsYrps4MHax0D5LxWlgXtPcfbnKheR-A';
         req = req.clone({
             setHeaders: {
                 Authorization: "Bearer " + authToken

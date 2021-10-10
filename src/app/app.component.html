@@ -2,9 +2,10 @@
   <div class="row" >
     <div class="txt-center">
       <div>
-        <span class="header-fntsz"><b>T-SHIRTS FOR MEN</b></span> ({{productsList.RowCount}}items)
+        <span class="header-fntsz"><b>T-SHIRTS FOR MEN</b></span> ({{listOfProducts.length}}items)
       </div>
     </div>
+    <span [hidden]="!sizeS" (click)="sizeS= false">s </span>
   </div>
   <div class="row">
     <div class="sort-border sort-mrgn">
@@ -31,11 +32,11 @@
         </div>
       </div>
       <div [hidden]="avlSize" class="filterMrgn">
-        <input type="checkbox"(change)="sizeS()"[(ngModel)]="S"><span class="gap">S</span>
-        <div><input type="checkbox"(change)="sizeM()"[(ngModel)]="M"> <span class="gap">M</span></div>
-        <div><input type="checkbox"(change)="sizeL()"[(ngModel)]="L"> <span class="gap">L</span></div>
-        <div><input type="checkbox"(change)="sizeXL()"[(ngModel)]="XL"> <span class="gap">XL</span></div>
-        <div><input type="checkbox"(change)="sizeXXL()"[(ngModel)]="XXL"> <span class="gap">XXL</span></div>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeS"><span class="gap">S</span>
+        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeM"> <span class="gap">M</span></div>
+        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeL"> <span class="gap">L</span></div>
+        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeXL"> <span class="gap">XL</span></div>
+        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeXXL"> <span class="gap">XXL</span></div>
       </div>
       <div (click)="showStyle()" class="filterbrdr">
         <label><b>STYLE</b>
@@ -95,26 +96,23 @@
     <div class="col-9">
       <div class="row">
         <div class="col-4 " *ngFor="let listOfProduct of listOfProducts">
-          <div *ngIf="!listOfProduct.changetxt" class="box-border"(mouseover)="listOfProduct.changetxt=true">
-            <img class="img-width" src="{{listOfProduct.ListImagePath + listOfProduct.Images.split('|')[0]}}"><br>
-            <div class="font-size">
+          <div class="box-border"(mouseover)="listOfProduct.changetxt=true"(mouseout)="listOfProduct.changetxt=false" [class]="listOfProduct.changetxt ? 'avlColors' : ''">
+            <img class="img-width" src="{{listOfProduct.activeImageUrl || (listOfProduct.ListImagePath + listOfProduct.Images.split('|')[0])}}"><br>
+            <div class="font-size" *ngIf="!listOfProduct.changetxt">
               <span>{{listOfProduct.ColorsCount}}  </span><label>Colors</label><br>
               <label>Style-</label><span> {{listOfProduct.StyleNumber}}</span><br>
               <span>{{listOfProduct.ProductTitle}}</span><br>
               <span class="mrp-color">₹  {{listOfProduct.MRP}}.00</span>
             </div>
-          </div>
-          <div *ngIf="listOfProduct.changetxt" class="avlColors" (mouseout)="listOfProduct.changetxt=false">
-            <img class="img-width" src="{{listOfProduct.ListImagePath + listOfProduct.Images.split('|')[0]}}"><br>
-            <div class="fixed-width">
+            <div class="fixed-width" *ngIf="listOfProduct.changetxt">
               <div class="inline" *ngFor="let colors of listOfProduct.ProductDetails">
-                <img class="smallImgWdth" src="{{colors.ColorSmallImagePath}}">
+                <img class="smallImgWdth"(mouseover)="changeImg(listOfProduct.ProductId,colors.ColorName)" src="{{colors.ColorSmallImagePath}}">
               </div><br>
               <span class="mrp-color">₹  {{listOfProduct.MRP}}.00</span>
             </div>
           </div>
         </div>
-        <div class="modal"></div>
+        <div class="modal">loading</div>
         <div class="col-4"></div>
         <div class="col-4"></div>
       </div>
