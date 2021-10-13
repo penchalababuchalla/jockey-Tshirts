@@ -3,6 +3,19 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
+.border-right {
+    margin-right: -30px;
+}
+.imgWidth-height {
+ 
+}
+.filters-style {
+    border: solid 1px;
+    background-color: gray;
+    color: white;
+    border-radius: 10px;
+    margin-left: 10px;
+}
 .header-fntsz {
     font-size: 25px;
 }
@@ -11,7 +24,8 @@
 }
 .box-border {
    margin-bottom: 60px;
-   margin-right: 34px;   
+   margin-right: 0px;   
+
 }
 .img-width {
     
@@ -22,6 +36,7 @@
     padding-left: 6px;
     padding-top: 6px;
     padding-bottom: 6px;
+ 
    
 }
 .font-size {
@@ -74,14 +89,20 @@ a {
 }
 .filterbrdr {
     border-bottom: 1px solid lightgray;
+    margin-left: -50px;
 }
 .filterMrgn {
-    margin-left: 40px;
     margin-bottom: 20px;
     margin-top: 20px;
 }
 .gap {
     margin-left: 26px;
+}
+.same-line {
+    display: inline;
+}
+.stil {
+    list-style: none;
 }
 .iconspc1 {
     margin-left: 200px;

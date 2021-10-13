@@ -7,17 +7,18 @@ import { AuthService } from './auth.service';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './token-interceptor.service';
 import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    
+    AppComponent,    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [
     {

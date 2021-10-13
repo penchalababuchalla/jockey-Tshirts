@@ -2,8 +2,24 @@
   <div class="row" >
     <div class="txt-center">
       <div>
-        <span class="header-fntsz"><b>T-SHIRTS FOR MEN</b></span> ({{productsList.RowCount}}items)
+        <span class="header-fntsz"><b>T-SHIRTS FOR MEN</b></span> ({{listOfProducts.length}}items)
       </div>
+    </div>
+  </div>
+  <div class="row filters-center">
+    <div class="col-3"></div>
+    <div class="col-9">
+      <span [hidden]="!sizeS" (click)="sizeS= false" type="button" class="filters-style">s <b>X</b></span>
+      <span [hidden]="!sizeM" (click)="sizeM= false"type="button" class="filters-style">m <b>X</b></span>
+      <span [hidden]="!sizeL" (click)="sizeL= false"type="button" class="filters-style">l <b>X</b></span>
+      <span [hidden]="!sizeXL" (click)="sizeXL= false"type="button" class="filters-style">xl <b>X</b></span>
+      <span [hidden]="!sizeXXL" (click)="sizeXXL= false"type="button" class="filters-style">xxl <b>X</b></span>
+      <span [hidden]="!styl2714" (click)="styl2714= false"type="button" class="filters-style">2714  - Sport-t-shirt<b>X</b></span>
+      <span [hidden]="!styl2715" (click)="styl2715= false"type="button" class="filters-style">2715 - Crew neck T-shirt<b>X</b></span>
+      <span [hidden]="!styl2717" (click)="styl2717= false"type="button" class="filters-style">12717 -t-shirts<b>X</b></span>
+      <span [hidden]="!styl2726" (click)="styl2726= false"type="button" class="filters-style">12726 -V-Neck T-shirt<b>X</b></span>
+      <span [hidden]="!stylAM50" (click)="stylAM50= false"type="button" class="filters-style">AM50 -V-neck T-Shirt<b>X</b></span>
+      <span [hidden]="!stylAM51" (click)="stylAM51= false"type="button" class="filters-style">AM51 -t-shirts<b>X</b></span>
     </div>
   </div>
   <div class="row">
@@ -31,11 +47,11 @@
         </div>
       </div>
       <div [hidden]="avlSize" class="filterMrgn">
-        <input type="checkbox"(change)="sizeS()"[(ngModel)]="S"><span class="gap">S</span>
-        <div><input type="checkbox"(change)="sizeM()"[(ngModel)]="M"> <span class="gap">M</span></div>
-        <div><input type="checkbox"(change)="sizeL()"[(ngModel)]="L"> <span class="gap">L</span></div>
-        <div><input type="checkbox"(change)="sizeXL()"[(ngModel)]="XL"> <span class="gap">XL</span></div>
-        <div><input type="checkbox"(change)="sizeXXL()"[(ngModel)]="XXL"> <span class="gap">XXL</span></div>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeS"><span class="gap">S</span>
+        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeM"> <span class="gap">M</span></div>
+        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeL"> <span class="gap">L</span></div>
+        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeXL"> <span class="gap">XL</span></div>
+        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeXXL"> <span class="gap">XXL</span></div>
       </div>
       <div (click)="showStyle()" class="filterbrdr">
         <label><b>STYLE</b>
@@ -45,12 +61,12 @@
         </label>
       </div>
       <div [hidden]="avlStyle" class="filterMrgn">
-        <input type="checkbox"> <span class="gap">2714 - Sport T-Shirt</span><br>
-        <input type="checkbox"> <span class="gap">2715 - Crew neck T-shirt</span><br>
-        <input type="checkbox"> <span class="gap">2717 - T-Shirt</span><br>
-        <input type="checkbox"> <span class="gap">2726 - V-Neck T-shirt</span><br>
-        <input type="checkbox"> <span class="gap">AM50 - V-neck T-Shirt</span><br>
-        <input type="checkbox"> <span class="gap">AM51 - T-Shirt  </span>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="styl2714"> <span class="gap">2714 - Sport T-Shirt</span><br>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="styl2715"> <span class="gap">2715 - Crew neck T-shirt</span><br>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="styl2717"> <span class="gap">2717 - T-Shirt</span><br>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="styl2726"> <span class="gap">2726 - V-Neck T-shirt</span><br>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="stylAM50"> <span class="gap">AM50 - V-neck T-Shirt</span><br>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="stylAM51"> <span class="gap">AM51 - T-Shirt  </span>
       </div>
       <div (click)="showColor()" class="filterbrdr">
         <label type="button"><b>COLOR</b>
@@ -60,13 +76,13 @@
         </label>
       </div>
       <div [hidden]="avlColor" class="filterMrgn">
-        <input type="radio"> <span class="gap">Red</span><br>
-        <input type="radio"> <span class="gap">Blue</span><br>
-        <input type="radio"> <span class="gap">Yellow</span><br>
-        <input type="radio"> <span class="gap">Green</span><br>
-        <input type="radio"> <span class="gap">Black</span><br>
-        <input type="radio"> <span class="gap">White</span><br>
-        <input type="radio"> <span class="gap">Orange</span>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrRed"> <span class="gap"[style.color]="'red'">Red</span><br>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrBlue"> <span class="gap"[style.color]="'Blue'">Blue</span><br>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrYellow"> <span class="gap"[style.color]="'Yellow'">Yellow</span><br>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrGreen"> <span class="gap"[style.color]="'Green'">Green</span><br>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrBlack"> <span class="gap"[style.color]="'Black'">Black</span><br>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrWhite"> <span class="gap"[style.color]="'lightgray'">White</span><br>
+        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrOrange"> <span class="gap"[style.color]="'Orange'">Orange</span>
       </div>
       <div (click)="showFabric()" class="filterbrdr">
         <label><b>FABRIC</b>
@@ -76,9 +92,9 @@
         </label>
       </div>
       <div [hidden]="avlFabric" class="filterMrgn">
-        <input [disabled]="cotton" type="checkbox"(change)="typeCotton()"[(ngModel)]="Cotton"> <span class="gap">Cotton</span><br>
-        <input [disabled]="ctnPlstr" type="checkbox"(change)="typeCtnPolstr()"[(ngModel)]="CtnPolstr"> <span class="gap">Cotton&Polyester</span><br>
-        <input [disabled]="polyester" type="checkbox"(change)="typePolyester()"[(ngModel)]="Polyester"> <span class="gap">Polyester</span>
+        <input [disabled]="ctn" type="checkbox"(change)="sortingOrder()"[(ngModel)]="Cotton"> <span class="gap">Cotton</span><br>
+        <input [disabled]="ctnPlstr" type="checkbox"(change)="sortingOrder()"[(ngModel)]="CtnPolstr"> <span class="gap">Cotton&Polyester</span><br>
+        <input [disabled]="plstr" type="checkbox"(change)="sortingOrder()"[(ngModel)]="Polyester"> <span class="gap">Polyester</span>
       </div>
       <div (click)="showSleeve()" class="filterbrdr">
         <label><b>SLEEVE</b>
@@ -88,33 +104,33 @@
         </label>
       </div>
       <div [hidden]="avlSleeve" class="filterMrgn">
-        <div><input [disabled]="isShow" type="checkbox"[(ngModel)]="Full"(change)="SleeveFull()"> <span class="gap">Full Sleeve</span></div>
-        <div><input [disabled]="isHide" type="checkbox"[(ngModel)]="Half"(change)="SleeveHalf()"> <span class="gap">Half Sleeve</span></div>
+        <div><input [disabled]="showFullSleeve" type="checkbox"(change)="sortingOrder()"[(ngModel)]="fullSleeve"> <span class="gap">Full Sleeve</span></div>
+        <div><input [disabled]="showHalfSleeve" type="checkbox"(change)="sortingOrder()"[(ngModel)]="halfSleeve"> <span class="gap">Half Sleeve</span></div>
+        <div><input [disabled]="showRaglanSleeve" type="checkbox"(change)="sortingOrder()"[(ngModel)]="raglanSleeve"> <span class="gap">Raglan Sleeve</span></div>
       </div>
     </div>
     <div class="col-9">
       <div class="row">
         <div class="col-4 " *ngFor="let listOfProduct of listOfProducts">
-          <div *ngIf="!listOfProduct.changetxt" class="box-border"(mouseover)="listOfProduct.changetxt=true">
-            <img class="img-width" src="{{listOfProduct.ListImagePath + listOfProduct.Images.split('|')[0]}}"><br>
-            <div class="font-size">
-              <span>{{listOfProduct.ColorsCount}}  </span><label>Colors</label><br>
-              <label>Style-</label><span> {{listOfProduct.StyleNumber}}</span><br>
-              <span>{{listOfProduct.ProductTitle}}</span><br>
-              <span class="mrp-color">₹  {{listOfProduct.MRP}}.00</span>
+          <div class="box-border"(mouseover)="listOfProduct.changetxt=true"(mouseout)="listOfProduct.changetxt=false" [class]="listOfProduct.changetxt ? 'avlColors' : ''">
+            <div class="imgWidth-height">
+              <img class="img-width" src="{{listOfProduct.activeImageUrl || (listOfProduct.ListImagePath + listOfProduct.Images.split('|')[0])}}"><br>
+              <div class="font-size" *ngIf="!listOfProduct.changetxt">
+                <span>{{listOfProduct.ColorsCount}}  </span><label>Colors</label><br>
+                <label>Style-</label><span> {{listOfProduct.StyleNumber}}</span><br>
+                <span>{{listOfProduct.activeTitle || (listOfProduct.ProductTitle)}}</span><br>
+                <span class="mrp-color">₹  {{listOfProduct.MRP}}.00</span>
+              </div>
             </div>
-          </div>
-          <div *ngIf="listOfProduct.changetxt" class="avlColors" (mouseout)="listOfProduct.changetxt=false">
-            <img class="img-width" src="{{listOfProduct.ListImagePath + listOfProduct.Images.split('|')[0]}}"><br>
-            <div class="fixed-width">
+            <div class="fixed-width" *ngIf="listOfProduct.changetxt">
               <div class="inline" *ngFor="let colors of listOfProduct.ProductDetails">
-                <img class="smallImgWdth" src="{{colors.ColorSmallImagePath}}">
+                <img class="smallImgWdth"(mouseover)="changeImg(listOfProduct.ProductId,colors.ColorName)" src="{{colors.ColorSmallImagePath}}">
               </div><br>
               <span class="mrp-color">₹  {{listOfProduct.MRP}}.00</span>
             </div>
           </div>
         </div>
-        <div class="modal"></div>
+        <div class="modal">loading</div>
         <div class="col-4"></div>
         <div class="col-4"></div>
       </div>
