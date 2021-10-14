@@ -1,11 +1,6 @@
 <div class="width container">
-  <div class="row" >
-    <div class="txt-center">
-      <div>
-        <span class="header-fntsz"><b>T-SHIRTS FOR MEN</b></span> ({{listOfProducts.length}}items)
-      </div>
-    </div>
-    <span [hidden]="!sizeS" (click)="sizeS= false">s </span>
+  <div class="row txt-center" >
+    <span class="header-fntsz"><b>T-SHIRTS FOR MEN</b></span> <label class="products-length">({{listOfProducts.length}}items)</label>
   </div>
   <div class="row filters-center">
     <div class="col-3"></div>
@@ -23,36 +18,33 @@
       <span [hidden]="!stylAM51" (click)="stylAM51= false"type="button" class="filters-style">AM51 -t-shirts<b>X</b></span>
     </div>
   </div>
-  <div class="row">
-    <div class="sort-border sort-mrgn">
-      <b>Sort By</b>
-      <select class="sortbrdr"[(ngModel)]="sortBy" (change)="sortingOrder()">
-        <option></option> 
-        <option>popular</option>
-        <option>price: High to Low</option>
-        <option>price: Low to High</option>
-        <option>bestseller</option>
-      </select>
-    </div>
+  <div class="row sort-border sort-mrgn">
+    <b>Sort By</b>
+    <select class="sortbrdr"[(ngModel)]="sortBy" (change)="sortingOrder()">
+      <option>popular</option>
+      <option>price: High to Low</option>
+      <option>price: Low to High</option>
+      <option>bestseller</option>
+    </select>
   </div>
   <div class="row">
     <div class="col-3">
       <h4><b>FILTER BY</b></h4><br>
-      <div (click)="showSize()">
-        <div class="filterbrdr">
-          <label><b>SIZE</b>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right iconspc1" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-            </svg>
-          </label>
-        </div>
+      <div (click)="showSize()" class="filterbrdr">
+        <label><b>SIZE</b>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right iconspc1" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </label>
       </div>
-      <div [hidden]="avlSize" class="filterMrgn">
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeS"><span class="gap">S</span>
-        <!-- <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeM"> <span class="gap">M</span></div>
-        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeL"> <span class="gap">L</span></div>
-        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeXL"> <span class="gap">XL</span></div>
-        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeXXL"> <span class="gap">XXL</span></div> -->
+      <div [hidden]="avlSize" class="filterMrgn"(change)="sizeFilter(indexOf(i,j))"  *ngFor="let avlFiltersList of filtersList.size">
+        <li><input type="checkbox"><span class="gap">{{avlFiltersList.Title}}</span></li>
+       
+        <!-- <input id="{{facet.key}}-{{category.Url}}" type="checkbox"
+        [checked]="selectedFilters[facet.key + '-' + category.Url]" name="{{facet.key}}"
+        (click)="applyFilter($event,facet,'',selectedFilters[facet.key + '-' + category.Url],facet.key+'s','')"
+        [(ngModel)]="selectedFilters[facet.key + '-' + category.Url]" value="{{category.Url}}"> -->
+
       </div>
       <div (click)="showStyle()" class="filterbrdr">
         <label><b>STYLE</b>
@@ -61,13 +53,9 @@
           </svg>
         </label>
       </div>
-      <div [hidden]="avlStyle" class="filterMrgn">
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="styl2714"> <span class="gap">2714 - Sport T-Shirt</span><br>
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="styl2715"> <span class="gap">2715 - Crew neck T-shirt</span><br>
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="styl2717"> <span class="gap">2717 - T-Shirt</span><br>
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="styl2726"> <span class="gap">2726 - V-Neck T-shirt</span><br>
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="stylAM50"> <span class="gap">AM50 - V-neck T-Shirt</span><br>
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="stylAM51"> <span class="gap">AM51 - T-Shirt  </span>
+      <div [hidden]="avlStyle" class="filterMrgn" *ngFor="let avlFiltersList of filtersList.style">
+        <li><input type="checkbox"(change)="sortingOrder()"> <span class="gap">{{avlFiltersList.Title}}</span></li>
+        
       </div>
       <div (click)="showColor()" class="filterbrdr">
         <label type="button"><b>COLOR</b>
@@ -76,14 +64,9 @@
           </svg>
         </label>
       </div>
-      <div [hidden]="avlColor" class="filterMrgn">
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrRed"> <span class="gap"[style.color]="'red'">Red</span><br>
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrBlue"> <span class="gap"[style.color]="'Blue'">Blue</span><br>
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrYellow"> <span class="gap"[style.color]="'Yellow'">Yellow</span><br>
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrGreen"> <span class="gap"[style.color]="'Green'">Green</span><br>
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrBlack"> <span class="gap"[style.color]="'Black'">Black</span><br>
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrWhite"> <span class="gap"[style.color]="'lightgray'">White</span><br>
-        <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="clrOrange"> <span class="gap"[style.color]="'Orange'">Orange</span>
+      <div [hidden]="avlColor" class="filterMrgn" *ngFor="let avlFiltersList of filtersList.color">
+        <li><input type="checkbox"(change)="sortingOrder()"> <span class="gap">{{avlFiltersList.Title}}</span></li>
+       
       </div>
       <div (click)="showFabric()" class="filterbrdr">
         <label><b>FABRIC</b>
@@ -92,10 +75,9 @@
           </svg>
         </label>
       </div>
-      <div [hidden]="avlFabric" class="filterMrgn">
-        <input [disabled]="ctn" type="checkbox"(change)="sortingOrder()"[(ngModel)]="Cotton"> <span class="gap">Cotton</span><br>
-        <input [disabled]="ctnPlstr" type="checkbox"(change)="sortingOrder()"[(ngModel)]="CtnPolstr"> <span class="gap">Cotton&Polyester</span><br>
-        <input [disabled]="plstr" type="checkbox"(change)="sortingOrder()"[(ngModel)]="Polyester"> <span class="gap">Polyester</span>
+      <div [hidden]="avlFabric" class="filterMrgn" *ngFor="let avlFiltersList of filtersList.fabric">
+        <li><input [disabled]="ctn" type="checkbox"(change)="sortingOrder()"> <span class="gap">{{avlFiltersList.Title}}</span></li>
+       
       </div>
       <div (click)="showSleeve()" class="filterbrdr">
         <label><b>SLEEVE</b>
@@ -104,39 +86,34 @@
           </svg>
         </label>
       </div>
-      <div [hidden]="avlSleeve" class="filterMrgn">
-        <div><input [disabled]="showFullSleeve" type="checkbox"(change)="sortingOrder()"[(ngModel)]="fullSleeve"> <span class="gap">Full Sleeve</span></div>
-        <div><input [disabled]="showHalfSleeve" type="checkbox"(change)="sortingOrder()"[(ngModel)]="halfSleeve"> <span class="gap">Half Sleeve</span></div>
-        <div><input [disabled]="showRaglanSleeve" type="checkbox"(change)="sortingOrder()"[(ngModel)]="raglanSleeve"> <span class="gap">Raglan Sleeve</span></div>
+      <div [hidden]="avlSleeve" class="filterMrgn" *ngFor="let avlFiltersList of filtersList.sleeve">
+        <li><input [disabled]="showFullSleeve" type="checkbox"(change)="sortingOrder()"> <span class="gap">{{avlFiltersList.Title}}</span></li>
+     
       </div>
     </div>
-    <div class="col-9">
-      <div class="row">
-        <div class="col-4 " *ngFor="let listOfProduct of listOfProducts">
-          <div class="box-border"(mouseover)="listOfProduct.changetxt=true"(mouseout)="listOfProduct.changetxt=false" [class]="listOfProduct.changetxt ? 'avlColors' : ''">
-            <div class="imgWidth-height">
-              <img class="img-width" src="{{listOfProduct.activeImageUrl || (listOfProduct.ListImagePath + listOfProduct.Images.split('|')[0])}}"><br>
-              <div class="font-size" *ngIf="!listOfProduct.changetxt">
-                <span>{{listOfProduct.ColorsCount}}  </span><label>Colors</label><br>
-                <label>Style-</label><span> {{listOfProduct.StyleNumber}}</span><br>
-                <span>{{listOfProduct.activeTitle || (listOfProduct.ProductTitle)}}</span><br>
-                <span class="mrp-color">₹  {{listOfProduct.MRP}}.00</span>
-              </div>
-            </div>
-            <div class="fixed-width" *ngIf="listOfProduct.changetxt">
-              <div class="inline" *ngFor="let colors of listOfProduct.ProductDetails">
-                <img class="smallImgWdth"(mouseover)="changeImg(listOfProduct.ProductId,colors.ColorName)" src="{{colors.ColorSmallImagePath}}">
-              </div><br>
-              <span class="mrp-color">₹  {{listOfProduct.MRP}}.00</span>
-            </div>
+    <div class="col-9 row">
+      <div class="col-4 " *ngFor="let listOfProduct of listOfProducts">
+        <div class="box-border"(mouseover)="listOfProduct.changetxt=true"(mouseout)="listOfProduct.changetxt=false" [class]="listOfProduct.changetxt ? 'avlColors' : ''">
+          <img class="img-width" src="{{listOfProduct.activeImageUrl || (listOfProduct.ListImagePath + listOfProduct.Images.split('|')[0])}}"><br>
+          <div class="font-size" *ngIf="!listOfProduct.changetxt">
+            <span>{{listOfProduct.ColorsCount}}  </span><label>Colors</label><br>
+            <label>Style-</label><span> {{listOfProduct.StyleNumber}}</span><br>
+            <span>{{listOfProduct.activeTitle || (listOfProduct.ProductTitle)}}</span><br>
+            <span class="mrp-color">₹  {{listOfProduct.MRP}}.00</span>
+          </div>
+          <div class="fixed-width" *ngIf="listOfProduct.changetxt">
+            <div class="inline" *ngFor="let colors of listOfProduct.ProductDetails">
+              <img class="smallImgWdth"(mouseover)="changeImg(listOfProduct.ProductId,colors.ColorName)" src="{{colors.ColorSmallImagePath}}">
+            </div><br>
+            <span class="mrp-color">₹  {{listOfProduct.MRP}}.00</span>
           </div>
         </div>
-        <div class="modal">loading</div>
-        <div class="col-4"></div>
-        <div class="col-4"></div>
       </div>
+      <div class="col-4"></div>
+      <div class="col-4"></div>
     </div>
   </div>
+  <h1 class="bufferlogo"[hidden]="logo">loading</h1>
 </div>
 
 <!-- [style.color]="'#'+colors.ColorCode" -->

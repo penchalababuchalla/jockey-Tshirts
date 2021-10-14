@@ -3,10 +3,13 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
+.products-length {
+    margin-top: 7px;
+    margin-left: 10px;
+}
 .border-right {
     margin-right: -30px;
 }
-
 .filters-style {
     border: solid 1px;
     background-color: gray;
@@ -23,19 +26,16 @@
 .box-border {
    margin-bottom: 60px;
    margin-right: 0px;   
-
 }
 .img-width {
-    
-    height: 320px;
+    height: 315px;
+    width: 238px;
 }
 .avlColors {
     box-shadow: lightgray 1px 5px 40px 5px;
-    padding-left: 6px;
-    padding-top: 6px;
-    padding-bottom: 6px;
- 
-   
+    padding-left: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 .font-size {
     font-size: 13px;
@@ -44,9 +44,7 @@
     height: 120;
 }
 .fixed-width {
-    width: 240px;
-    height: 110px;
-    padding-top: 20px;
+    margin-top: 20px;
 }
 .sort-brdnon {
     border: none;
@@ -90,8 +88,7 @@ a {
     margin-left: -50px;
 }
 .filterMrgn {
-    margin-bottom: 20px;
-    margin-top: 20px;
+    list-style: none;
 }
 .gap {
     margin-left: 26px;
@@ -111,7 +108,10 @@ a {
 .iconspc3 {
     margin-left: 178px;
 }
-.modal {
+.bufferlogo {
+    margin-left: 50%;
+}
+/* .modal {
     display:    none;
     position:   fixed;
     z-index:    1000;
@@ -123,16 +123,14 @@ a {
                 url('https://thumbs.gfycat.com/GleefulScarceBushsqueaker-max-1mb.gif') 
                 50% 50% 
                 no-repeat;
-}
+} */
 
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
-body.loading .modal {
+/* body.loading .modal {
     overflow: hidden;   
 }
 
 /* Anytime the body has the loading class, our
    modal element will be visible */
-body.loading .modal {
+/* body.loading .modal {
     display: block;
-}
+} */ 
