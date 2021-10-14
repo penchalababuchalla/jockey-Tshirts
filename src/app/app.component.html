@@ -5,6 +5,7 @@
         <span class="header-fntsz"><b>T-SHIRTS FOR MEN</b></span> ({{listOfProducts.length}}items)
       </div>
     </div>
+    <span [hidden]="!sizeS" (click)="sizeS= false">s </span>
   </div>
   <div class="row filters-center">
     <div class="col-3"></div>
@@ -48,10 +49,10 @@
       </div>
       <div [hidden]="avlSize" class="filterMrgn">
         <input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeS"><span class="gap">S</span>
-        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeM"> <span class="gap">M</span></div>
+        <!-- <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeM"> <span class="gap">M</span></div>
         <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeL"> <span class="gap">L</span></div>
         <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeXL"> <span class="gap">XL</span></div>
-        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeXXL"> <span class="gap">XXL</span></div>
+        <div><input type="checkbox"(change)="sortingOrder()"[(ngModel)]="sizeXXL"> <span class="gap">XXL</span></div> -->
       </div>
       <div (click)="showStyle()" class="filterbrdr">
         <label><b>STYLE</b>
