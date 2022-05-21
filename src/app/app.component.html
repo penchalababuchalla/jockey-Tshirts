@@ -1,8 +1,14 @@
-<div class="width container">
-  <div class="row txt-center" >
-    <span class="header-fntsz"><b>T-SHIRTS FOR MEN</b></span> <label class="products-length">({{listOfProducts.length}}items)</label>
+<div class="width container" *ngIf="false">
+  <div class="row txt-center">
+    <span class="header-fntsz"><b>T-SHIRTS FOR MEN</b></span> <label
+      class="products-length">({{productsCount.RowCount}}items)</label>
   </div>
-  <div class="row filters-center">
+  <!-- <div class="row">
+    <input type="text" placeholder="Search t-shirts.....">
+    <button>Search</button>
+
+  </div> -->
+  <!-- <div class="row filters-center">
     <div class="col-3"></div>
     <div class="col-9">
       <span [hidden]="!sizeS" (click)="sizeS= false" type="button" class="filters-style">s <b>X</b></span>
@@ -17,10 +23,10 @@
       <span [hidden]="!stylAM50" (click)="stylAM50= false"type="button" class="filters-style">AM50 -V-neck T-Shirt<b>X</b></span>
       <span [hidden]="!stylAM51" (click)="stylAM51= false"type="button" class="filters-style">AM51 -t-shirts<b>X</b></span>
     </div>
-  </div>
+  </div> -->
   <div class="row sort-border sort-mrgn">
     <b>Sort By</b>
-    <select class="sortbrdr"[(ngModel)]="sortBy" (change)="sortingOrder()">
+    <select class="sortbrdr" [(ngModel)]="sortBy" (change)="sortingOrder()">
       <option>popular</option>
       <option>price: High to Low</option>
       <option>price: Low to High</option>
@@ -32,82 +38,104 @@
       <h4><b>FILTER BY</b></h4><br>
       <div (click)="showFit()" class="filterbrdr">
         <label><b>FIT TYPE</b>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right iconspc1" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-chevron-right iconspc0" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
           </svg>
         </label>
       </div>
       <div [hidden]="avlFit" class="filterMrgn" *ngFor="let availableFitFilter of  filtersList.fittype">
-        <li><input type="checkbox" [(ngModel)]="fitFiltersList[availableFitFilter.Url]" (change)="sortingOrder()"><span class="gap">{{availableFitFilter.Title}}</span></li>
+        <li><input type="checkbox" [(ngModel)]="fitFiltersList[availableFitFilter.Url]" (change)="sortingOrder()"><span
+            class="gap">{{availableFitFilter.Title}}</span></li>
       </div>
       <div (click)="showSize()" class="filterbrdr">
         <label><b>SIZE</b>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right iconspc1" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-chevron-right iconspc1" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
           </svg>
         </label>
       </div>
       <div [hidden]="avlSize" class="filterMrgn" *ngFor="let availableSizeFilter of  filtersList.size">
-        <li><input type="checkbox" [(ngModel)]="sizeFiltersList[availableSizeFilter.Url]" (change)="sortingOrder()"><span class="gap">{{availableSizeFilter.Title}}</span></li>
+        <li><input type="checkbox" [(ngModel)]="sizeFiltersList[availableSizeFilter.Url]"
+            (change)="sortingOrder()"><span class="gap">{{availableSizeFilter.Title}}</span></li>
       </div>
       <div (click)="showStyle()" class="filterbrdr">
         <label><b>STYLE</b>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right iconspc2" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-chevron-right iconspc2" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
           </svg>
         </label>
       </div>
       <div [hidden]="avlStyle" class="filterMrgn" *ngFor="let availableStyleFilter of filtersList.style">
-        <li><input type="checkbox"[(ngModel)]="styleFiltersList[availableStyleFilter.Url]"(change)="sortingOrder()"><span class="gap">{{availableStyleFilter.Title}}</span></li>
+        <li><input type="checkbox" [(ngModel)]="styleFiltersList[availableStyleFilter.Url]"
+            (change)="sortingOrder()"><span class="gap">{{availableStyleFilter.Title}}</span></li>
       </div>
       <div (click)="showColor()" class="filterbrdr">
         <label type="button"><b>COLOR</b>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right iconspc3" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-chevron-right iconspc3" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
           </svg>
         </label>
       </div>
       <div [hidden]="avlColor" class="filterMrgn" *ngFor="let availableColorFilter of filtersList.color">
-        <li><input type="checkbox"[(ngModel)]="colorFiltersList[availableColorFilter.Url]"(change)="sortingOrder()"> <span class="gap">{{availableColorFilter.Title}}</span></li>
-       
+        <li><input type="checkbox" [(ngModel)]="colorFiltersList[availableColorFilter.Url]" (change)="sortingOrder()">
+          <span class="gap">{{availableColorFilter.Title}}</span></li>
+
       </div>
       <div (click)="showFabric()" class="filterbrdr">
         <label><b>FABRIC</b>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right iconspc3" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-chevron-right iconspc3" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
           </svg>
         </label>
       </div>
       <div [hidden]="avlFabric" class="filterMrgn" *ngFor="let availableFabricFilter of filtersList.fabric">
-        <li><input [disabled]="ctn" type="checkbox"[(ngModel)]="fabricFiltersList[availableFabricFilter.Url]"(change)="sortingOrder()"> <span class="gap">{{availableFabricFilter.Title}}</span></li>
-       
+        <li><input [disabled]="ctn" type="checkbox" [(ngModel)]="fabricFiltersList[availableFabricFilter.Url]"
+            (change)="sortingOrder()"> <span class="gap">{{availableFabricFilter.Title}}</span></li>
+
       </div>
       <div (click)="showSleeve()" class="filterbrdr">
         <label><b>SLEEVE</b>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right iconspc3" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-chevron-right iconspc3" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
           </svg>
         </label>
       </div>
       <div [hidden]="avlSleeve" class="filterMrgn" *ngFor="let availableSleeveFilter of filtersList.sleeve">
-        <li><input [disabled]="showFullSleeve" type="checkbox"[(ngModel)]="sleeveFiltersList[availableSleeveFilter.Url]"(change)="sortingOrder()"> <span class="gap">{{availableSleeveFilter.Title}}</span></li>
+        <li><input [disabled]="showFullSleeve" type="checkbox"
+            [(ngModel)]="sleeveFiltersList[availableSleeveFilter.Url]" (change)="sortingOrder()"> <span
+            class="gap">{{availableSleeveFilter.Title}}</span></li>
       </div>
     </div>
     <div class="col-9 row">
       <div class="col-4 " *ngFor="let listOfProduct of listOfProducts">
-        <div class="box-border"(mouseenter)="listOfProduct.changetxt=true"(mouseleave)="listOfProduct.changetxt=false" [class]="listOfProduct.changetxt ? 'avlColors' : ''">
-          <img class="img-width" src="{{listOfProduct.activeImageUrl || (listOfProduct.ListImagePath + listOfProduct.Images.split('|')[0])}}"><br>
+        <div class="box-border" (mouseenter)="listOfProduct.changetxt=true" (mouseleave)="listOfProduct.changetxt=false"
+          [class]="listOfProduct.changetxt ? 'avlColors' : ''">
+          <img class="img-width"
+            src="{{listOfProduct.activeImageUrl || (listOfProduct.ListImagePath + listOfProduct.Images.split('|')[0])}}"><br>
           <div class="font-size" *ngIf="!listOfProduct.changetxt">
-            <span>{{listOfProduct.ColorsCount}}  </span><label>Colors</label><br>
+            <span>{{listOfProduct.ColorsCount}} </span><label>Colors</label><br>
             <label>Style-</label><span> {{listOfProduct.StyleNumber}}</span><br>
             <span>{{listOfProduct.activeTitle || (listOfProduct.ProductTitle)}}</span><br>
-            <span class="mrp-color">₹  {{listOfProduct.MRP}}.00</span>
+            <span class="mrp-color">₹ {{listOfProduct.MRP}}.00</span>
           </div>
           <div class="fixed-width" *ngIf="listOfProduct.changetxt">
             <div class="inline" *ngFor="let colors of listOfProduct.ProductDetails">
-              <img class="smallImgWdth"(mouseover)="changeImg(listOfProduct.ProductId,colors.ColorName)" src="{{colors.ColorSmallImagePath}}">
+              <img class="smallImgWdth" (mouseover)="changeImg(listOfProduct.ProductId,colors.ColorName)"
+                src="{{colors.ColorSmallImagePath}}">
             </div><br>
-            <span class="mrp-color">₹  {{listOfProduct.MRP}}.00</span>
+            <span class="mrp-color">₹ {{listOfProduct.MRP}}.00</span>
           </div>
         </div>
       </div>
@@ -115,7 +143,16 @@
       <div class="col-4"></div>
     </div>
   </div>
-  <h1 class="bufferlogo"[hidden]="logo">loading</h1>
+  <h1 class="bufferlogo" [hidden]="logo">loading</h1>
 </div>
 
-<!-- [style.color]="'#'+colors.ColorCode" -->
+
+<!-- <button class="lftMrgn" (click)="increment()">+</button>
+<span>{{count}}</span>
+<button (click)="decrement()">-</button>
+
+<button (click)="calculate()">-2</button>
+<button (click)="calculate()">-1</button>
+<span>{{num}}</span>
+<button (click)="calculate()">+1</button>
+<button (click)="calculate()">+2</button> -->

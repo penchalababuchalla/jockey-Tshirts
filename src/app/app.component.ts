@@ -1,4 +1,4 @@
-import { Component,HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
@@ -11,71 +11,76 @@ import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
 export class AppComponent {
   title = 'jockey-Tshirts';
   textHide = true;
-  listOfProducts:any;
-  changetxt : boolean;
-  sortBy= "";
-  avlFit:boolean;
-  avlSize:boolean;
-  avlStyle:boolean;
-  avlColor:boolean;
-  avlFabric:boolean;
-  avlSleeve:boolean;
-  ctn:boolean =false;
-  ctnPlstr:boolean =false;
-  plstr:boolean =false;
+  listOfProducts: any;
+  changetxt: boolean;
+  sortBy = "";
+  avlFit: boolean;
+  avlSize: boolean;
+  avlStyle: boolean;
+  avlColor: boolean;
+  avlFabric: boolean;
+  avlSleeve: boolean;
+  ctn: boolean = false;
+  ctnPlstr: boolean = false;
+  plstr: boolean = false;
   filtersList: any;
-  logo:boolean = true;
-  size:any;
+  logo: boolean = true;
+  productsCount: any;
 
-  totalRecords = 0;
-  
-  sizeS=false;
-  sizeM=false;
-  sizeL=false;
-  sizeXL=false;
-  sizeXXL=false;
-  styl2714=false;
-  styl2715=false;
-  styl2717=false;
-  styl2726=false;
-  stylAM50=false;
-  stylAM51=false;
-  fullSleeve=false;
-  halfSleeve=false;
-  raglanSleeve=false;
-  showRaglanSleeve =false;
-  showHalfSleeve =false;
-  showFullSleeve=false;
-  clrRed=false;
-  clrBlue=false;
-  clrBlack=false;
-  clrYellow=false;
-  clrGreen=false;
-  clrWhite=false;
-  clrOrange=false;
-  CtnPolstr=false;
-  Polyester=false;
-  Cotton=false;
-  
-  pageNumber=1;
-  avblProducts: any;
 
-  fitFiltersList:any = {}
-  sizeFiltersList:any = {}
-  styleFiltersList:any = {}
-  colorFiltersList:any = {}
-  fabricFiltersList:any = {}
-  sleeveFiltersList:any = {}
+  sizeS = false;
+  sizeM = false;
+  sizeL = false;
+  sizeXL = false;
+  sizeXXL = false;
+  styl2714 = false;
+  styl2715 = false;
+  styl2717 = false;
+  styl2726 = false;
+  stylAM50 = false;
+  stylAM51 = false;
+  fullSleeve = false;
+  halfSleeve = false;
+  raglanSleeve = false;
+  showRaglanSleeve = false;
+  showHalfSleeve = false;
+  showFullSleeve = false;
+  clrRed = false;
+  clrBlue = false;
+  clrBlack = false;
+  clrYellow = false;
+  clrGreen = false;
+  clrWhite = false;
+  clrOrange = false;
+  CtnPolstr = false;
+  Polyester = false;
+  Cotton = false;
 
-  constructor(private http: HttpClient,private router: Router, private route: ActivatedRoute){
-    
+  pageNumber = 1;
+
+
+  fitFiltersList: any = {}
+  sizeFiltersList: any = {}
+  styleFiltersList: any = {}
+  colorFiltersList: any = {}
+  fabricFiltersList: any = {}
+  sleeveFiltersList: any = {}
+  //#Practiece
+
+  count: number = 0;
+
+  //#Practiece
+
+
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
+
     this.router = router;
 
     var url = 'https://api.jockey.in/api/productsbystyles?cat1=men&cat2=apparel-tops&cat3=t-shirts&cat4=&pno=1&ps=12&by=&ctkn=&dir=&f='
     this.http.get<any>(url).subscribe(data => {
-      this.filtersList=data.Data.Facets
-      this.avblProducts = data.Data.StyleDetails
-      this.listOfProducts = this.avblProducts
+      this.filtersList = data.Data.Facets
+      this.listOfProducts = data.Data.StyleDetails
+
       // this.totalRecords = data.Data.RowCount
     });
     this.changetxt = false;
@@ -85,222 +90,246 @@ export class AppComponent {
     this.avlColor = true;
     this.avlFabric = true;
     this.avlSleeve = true;
-  }   
+  }
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       let appliedFitFiltersStr = params['fit'];
-      if(appliedFitFiltersStr){
+      if (appliedFitFiltersStr) {
         let appliedFitFilters = appliedFitFiltersStr.split(':');
-        for(let i=0;i<appliedFitFilters.length;i++){
+        for (let i = 0; i < appliedFitFilters.length; i++) {
           this.fitFiltersList[appliedFitFilters[i]] = true;
         }
       }
       let appliedSizeFiltersStr = params['size'];
-      if(appliedSizeFiltersStr){
+      if (appliedSizeFiltersStr) {
         let appliedSizeFilters = appliedSizeFiltersStr.split(':');
-        for(let i=0; i < appliedSizeFilters.length; i++) {
+        for (let i = 0; i < appliedSizeFilters.length; i++) {
           this.sizeFiltersList[appliedSizeFilters[i]] = true;
         }
       }
       let appliedStyleFiltersStr = params['style'];
-      if(appliedStyleFiltersStr){
+      if (appliedStyleFiltersStr) {
         let appliedStyleFilters = appliedStyleFiltersStr.split(':');
-        for(let i=0; i < appliedStyleFilters.length; i++) {
+        for (let i = 0; i < appliedStyleFilters.length; i++) {
           this.styleFiltersList[appliedStyleFilters[i]] = true;
         }
       }
       let appliedColorFiltersStr = params['color'];
-      if(appliedColorFiltersStr){
+      if (appliedColorFiltersStr) {
         let appliedColorFilters = appliedColorFiltersStr.split(':');
-        for(let i=0; i < appliedColorFilters.length; i++) {
+        for (let i = 0; i < appliedColorFilters.length; i++) {
           this.colorFiltersList[appliedColorFilters[i]] = true;
         }
       }
       let appliedFabricFiltersStr = params['fabric'];
-      if(appliedFabricFiltersStr){
+      if (appliedFabricFiltersStr) {
         let appliedFabricFilters = appliedFabricFiltersStr.split(':');
-        for(let i=0;i<appliedFabricFilters.length;i++){
-          this.fabricFiltersList[appliedFabricFilters[i]]=true;
+        for (let i = 0; i < appliedFabricFilters.length; i++) {
+          this.fabricFiltersList[appliedFabricFilters[i]] = true;
         }
       }
       let appliedSleeveFiltersStr = params['sleeve'];
-      if(appliedSleeveFiltersStr){
+      if (appliedSleeveFiltersStr) {
         let appliedSleeveFilters = appliedSleeveFiltersStr.split(':');
-        for(let i=0; i < appliedSleeveFilters.length; i++) {
+        for (let i = 0; i < appliedSleeveFilters.length; i++) {
           this.sleeveFiltersList[appliedSleeveFilters[i]] = true;
         }
       }
       this.sortingOrder(false)
     });
-  } 
-  sortingOrder(navigate=true){
+  }
+  sortingOrder(navigate = true) {
     // debugger
-    var url="cat1=men&cat2=apparel-tops&cat3=t-shirts&cat4=&ps=12&ctkn=&f=";
+    var url = "cat1=men&cat2=apparel-tops&cat3=t-shirts&cat4=&ps=12&ctkn=&f=";
 
     var availableFitFilterUrl = Object.keys(this.fitFiltersList);
-    availableFitFilterUrl = availableFitFilterUrl.filter(url => this.fitFiltersList[url]==true);
+    availableFitFilterUrl = availableFitFilterUrl.filter(url => this.fitFiltersList[url] == true);
     var fitFiltersString = availableFitFilterUrl.join(":");
-    if(fitFiltersString!=""){
-      url=url + `fittype=`+fitFiltersString + `|`
+    if (fitFiltersString != "") {
+      url = url + `fittype=` + fitFiltersString + `|`
     }
     var availableSizeFilterUrl = Object.keys(this.sizeFiltersList);
-    availableSizeFilterUrl = availableSizeFilterUrl.filter(url => this.sizeFiltersList[url]==true);
+    availableSizeFilterUrl = availableSizeFilterUrl.filter(url => this.sizeFiltersList[url] == true);
     var sizeFiltersString = availableSizeFilterUrl.join(":");
-    if( sizeFiltersString !=""){
-      url = url + `size=`+sizeFiltersString + `|`
+    if (sizeFiltersString != "") {
+      url = url + `size=` + sizeFiltersString + `|`
     }
     var availableStyleFilterUrl = Object.keys(this.styleFiltersList);
-    availableStyleFilterUrl = availableStyleFilterUrl.filter(url => this.styleFiltersList[url]==true);
+    availableStyleFilterUrl = availableStyleFilterUrl.filter(url => this.styleFiltersList[url] == true);
     var styleFiltersString = availableStyleFilterUrl.join(":");
-    if(styleFiltersString !=""){
-      url = url + `style=`+styleFiltersString + `|`
+    if (styleFiltersString != "") {
+      url = url + `style=` + styleFiltersString + `|`
     }
     var availableColorFilterUrl = Object.keys(this.colorFiltersList);
-    availableColorFilterUrl = availableColorFilterUrl.filter(url => this.colorFiltersList[url]==true);
+    availableColorFilterUrl = availableColorFilterUrl.filter(url => this.colorFiltersList[url] == true);
     var colorFiltersString = availableColorFilterUrl.join(":");
-    if(colorFiltersString!=""){
-      url = url+`color=`+colorFiltersString +`|`
+    if (colorFiltersString != "") {
+      url = url + `color=` + colorFiltersString + `|`
     }
     var availableFabricFilterUrl = Object.keys(this.fabricFiltersList);
-    availableFabricFilterUrl = availableFabricFilterUrl.filter(url => this.fabricFiltersList[url]==true);
+    availableFabricFilterUrl = availableFabricFilterUrl.filter(url => this.fabricFiltersList[url] == true);
     var fabricFiltersString = availableFabricFilterUrl.join(":");
-    if(fabricFiltersString!=""){
-      url = url+`fabric=`+fabricFiltersString +`|`
+    if (fabricFiltersString != "") {
+      url = url + `fabric=` + fabricFiltersString + `|`
     }
     var availableSizeFilterUrl = Object.keys(this.sleeveFiltersList);
-    availableSizeFilterUrl = availableSizeFilterUrl.filter(url => this.sleeveFiltersList[url]==true);
+    availableSizeFilterUrl = availableSizeFilterUrl.filter(url => this.sleeveFiltersList[url] == true);
     var sleeveFiltersString = availableSizeFilterUrl.join(":");
-    if(sleeveFiltersString!=""){
-      url = url+`sleeve=`+sleeveFiltersString+`|`
+    if (sleeveFiltersString != "") {
+      url = url + `sleeve=` + sleeveFiltersString + `|`
     }
 
-    if(this.sortBy=="popular"){
-      url = url+`&by=popular` 
-    } else if(this.sortBy=="price: High to Low"){
-      url = url+`&by=price&dir=desc`
-    } else if(this.sortBy=="price: Low to High"){
-      url = url+`&by=price&dir=asc`
-    } else if(this.sortBy=="bestseller"){
-      url = url+`&by=bestseller`
-    }   
- 
-    if(navigate) {
+    if (this.sortBy == "popular") {
+      url = url + `&by=popular`
+    } else if (this.sortBy == "price: High to Low") {
+      url = url + `&by=price&dir=desc`
+    } else if (this.sortBy == "price: Low to High") {
+      url = url + `&by=price&dir=asc`
+    } else if (this.sortBy == "bestseller") {
+      url = url + `&by=bestseller`
+    }
+
+    if (navigate) {
       const queryParams: Params = {};
 
-      if(fitFiltersString!=""){
+      if (fitFiltersString != "") {
         queryParams['fit'] = fitFiltersString;
       }
-      if(sizeFiltersString != ""){
+      if (sizeFiltersString != "") {
         queryParams['size'] = sizeFiltersString;
       }
-      if(colorFiltersString != ""){
+      if (colorFiltersString != "") {
         queryParams['color'] = colorFiltersString;
       }
-      if(styleFiltersString != ""){
-        queryParams['style'] =styleFiltersString;
+      if (styleFiltersString != "") {
+        queryParams['style'] = styleFiltersString;
       }
-      if(fabricFiltersString != ""){
+      if (fabricFiltersString != "") {
         queryParams['fabric'] = fabricFiltersString;
       }
-      if(sleeveFiltersString != ""){
+      if (sleeveFiltersString != "") {
         queryParams['sleeve'] = sleeveFiltersString;
       }
-      this.router.navigate(
-        [], 
+      this.router.navigate([],
         {
           relativeTo: this.route,
-          queryParams: queryParams, 
-      });
+          queryParams: queryParams,
+        });
     }
-    url=url + `&pno=`+this.pageNumber
-    if(this.pageNumber > 1){
+    url = url + `&pno=` + this.pageNumber
+    if (this.pageNumber > 1) {
       debugger
-      this.http.get<any>('https://api.jockey.in/api/productsbystyles?'+url).subscribe(data => {
-        this.logo=true;
+      this.http.get<any>('https://api.jockey.in/api/productsbystyles?' + url).subscribe(data => {
+        this.logo = true;
         this.listOfProducts = this.listOfProducts.concat(data.Data.StyleDetails)
         // this.totalRecords = data.Data.RowCount
-      }); 
+      });
     } else {
       debugger
-      this.http.get<any>('https://api.jockey.in/api/productsbystyles?'+url).subscribe(data => {
-        if(data.Data.StyleDetails == null){
+      this.http.get<any>('https://api.jockey.in/api/productsbystyles?' + url).subscribe(data => {
+        this.productsCount = data
+        if (data.Data.StyleDetails == null) {
           this.listOfProducts = []
         } else {
           this.listOfProducts = data.Data.StyleDetails;
           // this.totalRecords = data.Data.RowCount
         }
-      }); 
+      });
     }
-  } 
-  showFit(){
+  }
+  showFit() {
     debugger
-    if(this.avlFit==true){
+    if (this.avlFit == true) {
       this.avlFit = false;
-    }else {
+    } else {
       this.avlFit = true;
     }
   }
-  showSize(){
+  showSize() {
     // this.avlSize = false;
-    if(this.avlSize==true){
+    if (this.avlSize == true) {
       this.avlSize = false;
     } else {
-      this.avlSize =true;
+      this.avlSize = true;
     }
   }
-  showStyle(){
-    if(this.avlStyle == true){
-      this.avlStyle=false;
-    }else{
-      this.avlStyle=true;
+  showStyle() {
+    if (this.avlStyle == true) {
+      this.avlStyle = false;
+    } else {
+      this.avlStyle = true;
     }
   }
-  showColor(){
-    if(this.avlColor == true){
+  showColor() {
+    if (this.avlColor == true) {
       this.avlColor = false;
-    }else{
+    } else {
       this.avlColor = true;
     }
   }
-  showFabric(){
-    if(this.avlFabric == true){
+  showFabric() {
+    if (this.avlFabric == true) {
       this.avlFabric = false;
-    }else{
+    } else {
       this.avlFabric = true;
     }
   }
-  showSleeve(){
-     if(this.avlSleeve ==true){
+  showSleeve() {
+    if (this.avlSleeve == true) {
       this.avlSleeve = false;
-     }else{
+    } else {
       this.avlSleeve = true;
-     }
+    }
   }
-  changeImg(productId:any,colorName:any){
+  changeImg(productId: any, colorName: any) {
     for (var i = 0; i < this.listOfProducts.length; i++) {
       if (this.listOfProducts[i].ProductId == productId) {
-        for(var j = 0; j < this.listOfProducts[i].ProductDetails.length; j++){
+        for (var j = 0; j < this.listOfProducts[i].ProductDetails.length; j++) {
           if (this.listOfProducts[i].ProductDetails[j].ColorName == colorName) {
             this.listOfProducts[i].changetxt = true;
-            this.listOfProducts[i].activeImageUrl =  this.listOfProducts[i].ProductDetails[j].ListImagePath + this.listOfProducts[i].ProductDetails[j].Images.split('|')[0];
+            this.listOfProducts[i].activeImageUrl = this.listOfProducts[i].ProductDetails[j].ListImagePath + this.listOfProducts[i].ProductDetails[j].Images.split('|')[0];
             this.listOfProducts[i].activeTitle = this.listOfProducts[i].ProductDetails[j].ProductTitle;
-            
+
           }
         }
       }
     }
   }
-  @HostListener("window:scroll", ["$event"])
-  onWindowScroll(){
-     if(window.scrollY + document.documentElement.clientHeight > document.documentElement.offsetHeight - 500){
-      debugger
-      // if(this.totalRecords >  this.listOfProducts.length){
-        this.pageNumber = this.pageNumber +1
-        
-        if(this.pageNumber==2){
-          this.logo=false;
-          this.sortingOrder();
-        }     
-     }    
-   }
+  // @HostListener("window:scroll", ["$event"])
+  // onWindowScroll(){
+  //    if(window.scrollY + document.documentElement.clientHeight > document.documentElement.offsetHeight - 500){
+  //     debugger
+  //     // if(this.totalRecords >  this.listOfProducts.length){
+  //       this.pageNumber = this.pageNumber +1
+
+  //       if(this.pageNumber==2){
+  //         this.logo=false;
+  //         this.sortingOrder();
+  //       }     
+  //    }    
+  // }
+
+  increment() {
+    this.count = this.count + 1;
+  }
+  decrement() {
+    if (this.count > 0) {
+      this.count = this.count - 1;
+    }
+  }
+  calculate(type: string) {
+    var num = 0;
+    if (type == '-2') {
+      num = num - 2;
+    }
+    if (type == '-1') {
+      num = num - 1;
+    }
+    if (type == '+1') {
+      num = num + 1;
+    }
+    if (type == '+2') {
+      num = num + 2;
+    }
+  }
 }

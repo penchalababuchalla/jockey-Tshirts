@@ -99,6 +99,9 @@ a {
 .stil {
     list-style: none;
 }
+.iconspc0 {
+    margin-left: 170px;
+}
 .iconspc1 {
     margin-left: 200px;
 }
@@ -110,6 +113,10 @@ a {
 }
 .bufferlogo {
     margin-left: 50%;
+}
+.lftMrgn {
+    margin-left: 50%;
+    margin-top: 20%;
 }
 /* .modal {
     display:    none;
